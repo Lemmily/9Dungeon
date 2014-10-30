@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<data>
+    <raw keyName="ironore" name="iron ore"> <!--//keyname must be same as image atlas name-->
+        <location>mine</location>
+        <output>1.0</output>
+        <time>3.0</time>
+    </raw>
+    <raw keyName="copperore" name="copper ore">
+        <location>mine</location>
+        <output>1.0</output>
+        <time>3.0</time>
+    </raw>
+    <raw keyName="coal" name="coal">
+        <location>mine</location>
+        <output>1.0</output>
+        <time>3.0</time>
+    </raw>
+    <raw keyName="stone" name="stone">
+        <location name="quarry">mine</location>
+        <output>1.0</output>
+        <time>2.5</time>
+    </raw>
+    <raw keyName="slag" name="slag">
+        <location>furnace</location>
+        <output>1.0</output>
+        <time>1.0</time>
+    </raw>
+
+    <processed keyName="ironbar" name="iron bar">
+        <location>furnace</location>
+        <shape I="ironore" F="coal">I,F</shape>
+        <need type="iron ore" amount="1"/>
+        <need type="coal" amount="1"/>
+        <output>1.0</output>
+        <time>1.0</time>
+        <byproduct type="slag" amount="0.1" chance="0.1"/>
+    </processed>
+    <processed keyName="copperplate" name="copper plate">
+        <location>furnace</location>
+        <shape C="copperore" F="coal">C,F</shape>
+        <need type="copperore" amount="1"/>
+        <need type="coal" amount="1"/>
+        <output>1.0</output>
+        <time>1.0</time>
+        <byproduct type="slag" amount="0.1" chance="0.1"/>
+    </processed>
+    <processed keyName="copperwire" name="copper wire">
+        <location>furnace</location>
+        <shape C="copperplate">CC</shape>
+        <need type="copperplate" amount="2"/>
+        <output>2.0</output>
+        <time>0.5</time>
+    </processed>
+    <processed keyName="circuitboard" name="circuit board">
+        <location>furnace</location>
+        <shape W="copperwire" I="ironbar" O="nothing">WWW,OIO</shape>
+        <need type="copperwire" amount="3"/>
+        <need type="ironbar" amount="1"/>
+        <output>1.0</output>
+        <time>5.5</time>
+    </processed>
+</data>
