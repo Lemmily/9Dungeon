@@ -9,7 +9,6 @@ import uk.co.lemmily.game.ui.Slot;
  */
 public class ItemSlot extends Slot {
 
-
     public ItemSlot(Entity item, int amount) {
         this.item = item;
         this.amount =  amount;
@@ -35,6 +34,7 @@ public class ItemSlot extends Slot {
         }
         return false;
     }
+
     public boolean add(Entity item, int amount) {
         if ( this.item == item || this.item == null) {
             this.item = item;

@@ -19,4 +19,5 @@ public class Board {
     public Array<BoardSlot> getSlots() {
         return slots;
     }
+
 }

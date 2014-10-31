@@ -15,11 +15,8 @@ public class BoardActor extends Window {
     public BoardActor(Board board, DragAndDropLocked dragAndDrop, Skin skin) {
         super("World", skin);
 
-
         defaults().space(5);
         row().fillX().expandX();
-
-
 
         int i = 0;
         for (BoardSlot slot : board.getSlots()) {
