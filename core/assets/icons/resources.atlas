@@ -65,3 +65,10 @@ nothing
   orig: 16, 16
   offset: 0, 0
   index: -1
+default
+  rotate: false
+  xy: 38, 38
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1

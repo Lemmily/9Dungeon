@@ -9,12 +9,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import uk.co.lemmily.game.board.Board;
-import uk.co.lemmily.game.board.BoardActor;
+import uk.co.lemmily.game.entity.Player;
+import uk.co.lemmily.game.entity.PlayerActor;
 import uk.co.lemmily.game.inventory.Crafting;
 import uk.co.lemmily.game.inventory.CraftingActor;
 import uk.co.lemmily.game.inventory.Inventory;
 import uk.co.lemmily.game.inventory.InventoryActor;
+import uk.co.lemmily.game.new_board.Board;
+import uk.co.lemmily.game.new_board.BoardActor;
 import uk.co.lemmily.game.ui.DragAndDropLocked;
 
 /**
@@ -25,6 +27,7 @@ public class GameScreen implements Screen {
     private InventoryActor inventoryActor;
     private CraftingActor craftingActor;
     private BoardActor boardActor;
+    private PlayerActor playerActor;
 
     @Override
     public void show() {
@@ -36,15 +39,19 @@ public class GameScreen implements Screen {
         Skin skin = new Skin(Gdx.files.internal("skins/uiskin.json"));
 
         DragAndDrop dragAndDrop = new DragAndDrop();
-        DragAndDropLocked dragAndDropLocked = new DragAndDropLocked();
+//        DragAndDropLocked dragAndDropLocked = new DragAndDropLocked();
 
         Inventory inventory = new Inventory();
         Crafting crafting = new Crafting(9, 3);
         Board board = new Board();
 
+        Player player = new Player();
+        playerActor = new PlayerActor(player);
+
         inventoryActor = new InventoryActor(inventory, dragAndDrop, skin);
         craftingActor = new CraftingActor(crafting, inventory, dragAndDrop, skin);
-        boardActor = new BoardActor(board, dragAndDropLocked, skin);
+        boardActor = new BoardActor(board, player, dragAndDrop, skin);
+
         stage.addActor(inventoryActor);
         stage.addActor(craftingActor);
         stage.addActor(boardActor);
@@ -64,7 +71,6 @@ public class GameScreen implements Screen {
 
         stage.act(delta);
         stage.draw();
-
     }
 
     @Override

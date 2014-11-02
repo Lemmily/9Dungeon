@@ -1,16 +1,12 @@
 package uk.co.lemmily.game.board;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import uk.co.lemmily.game.LibgdxUtils;
-import uk.co.lemmily.game.inventory.Item;
-import uk.co.lemmily.game.inventory.ItemSlot;
-import uk.co.lemmily.game.inventory.SlotActor;
+import uk.co.lemmily.game.entity.Entity;
 import uk.co.lemmily.game.ui.DragAndDropLocked;
 import uk.co.lemmily.game.ui.DragAndDropLocked.Payload;
 import uk.co.lemmily.game.ui.DragAndDropLocked.Target;

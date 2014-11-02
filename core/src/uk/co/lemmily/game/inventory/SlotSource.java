@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import uk.co.lemmily.game.LibgdxUtils;
-import uk.co.lemmily.game.board.Entity;
+import uk.co.lemmily.game.entity.Entity;
 
 /**
  * Created by Emily on 23/10/2014.

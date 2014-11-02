@@ -3,7 +3,7 @@ package uk.co.lemmily.game.inventory;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import uk.co.lemmily.game.board.BoardSlot;
+//import uk.co.lemmily.game.board.BoardSlot;
 import uk.co.lemmily.game.ui.Slot;
 
 /**

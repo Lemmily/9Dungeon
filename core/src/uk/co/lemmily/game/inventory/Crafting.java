@@ -2,7 +2,7 @@ package uk.co.lemmily.game.inventory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
-import uk.co.lemmily.game.board.Entity;
+import uk.co.lemmily.game.entity.Entity;
 import uk.co.lemmily.game.inventory.Recipe.Recipe;
 import uk.co.lemmily.game.inventory.Recipe.ShapedRecipe;
 import uk.co.lemmily.game.inventory.Recipe.XMLReader;
@@ -105,7 +105,7 @@ public class Crafting {
             while (j < modulo) {
                 i = 1;
                 for (int k = 0; k < colLength; k++) {
-                    if (sequence.charAt(j + k * modulo) != Item.NOTHING.getId()) {
+                    if (sequence.charAt(j + k * modulo) != Entity.NOTHING.getId()) {
                         i = -1;
                     }
                 }

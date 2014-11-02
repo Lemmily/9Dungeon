@@ -1,6 +1,7 @@
 package uk.co.lemmily.game.board;
 
 import com.badlogic.gdx.utils.Array;
+import uk.co.lemmily.game.entity.Entity;
 
 /**
  * Created by Emily on 29/10/2014.

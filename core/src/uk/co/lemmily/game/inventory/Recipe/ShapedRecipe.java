@@ -1,7 +1,6 @@
 package uk.co.lemmily.game.inventory.Recipe;
 
-import uk.co.lemmily.game.board.Entity;
-import uk.co.lemmily.game.inventory.Item;
+import uk.co.lemmily.game.entity.Entity;
 import uk.co.lemmily.game.inventory.ItemSlot;
 
 import java.util.HashMap;

@@ -39,6 +39,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Logger;
 import uk.co.lemmily.game.splash.SplashScreen;
 import uk.co.lemmily.game.tween.ActorAccessor;
+import uk.co.lemmily.game.ui.UIMananager;
 
 /**
  * This is the main class of the game itself. It offers access to the
@@ -79,6 +80,7 @@ public class LibgdxUtils implements ApplicationListener {
     public static ModelBatch modelBatch;
 
     public static TweenManager tweenManager;
+    private UIMananager uiManager;
 
     @Override
     public void create() {
@@ -154,5 +156,9 @@ public class LibgdxUtils implements ApplicationListener {
         if (modelBatch != null) {
             modelBatch.dispose();
         }
+    }
+
+    public UIMananager getUIelement() {
+        return uiManager;
     }
 }

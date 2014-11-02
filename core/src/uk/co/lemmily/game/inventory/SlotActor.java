@@ -53,6 +53,11 @@ public class SlotActor extends ImageTextButton implements SlotListener {
         style.imageUp = new TextureRegionDrawable(image);
         style.imageDown = new TextureRegionDrawable(image);
 
+//        style.imageUp.setMinWidth(image.getRegionWidth() * 2);
+//        style.imageUp.setMinHeight(image.getRegionHeight() * 2);
+//        style.imageDown.setMinWidth(image.getRegionWidth() * 2);
+//        style.imageDown.setMinHeight(image.getRegionHeight() * 2);
+
         return style;
     }
 

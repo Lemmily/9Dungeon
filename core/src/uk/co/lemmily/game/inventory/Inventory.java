@@ -2,7 +2,7 @@ package uk.co.lemmily.game.inventory;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
-import uk.co.lemmily.game.board.Entity;
+import uk.co.lemmily.game.entity.Entity;
 
 /**
  * Created by Emily on 23/10/2014.
@@ -23,7 +23,7 @@ public class Inventory {
         Entity en = new Entity();
         //create some random items
         for (ItemSlot slot : slots) {
-            Entity e = (Entity)Entity.getItems().values().toArray()[MathUtils.random(0, Item.values().length - 1)];
+            Entity e = (Entity)Entity.getItems().values().toArray()[MathUtils.random(0, Entity.getItems().values().size() - 1)];
             slot.add(e, 1);
             if (slot.getItem() == Entity.NOTHING) {
                 slot.take(slot.getAmount()); //can't stock a "nothing" item

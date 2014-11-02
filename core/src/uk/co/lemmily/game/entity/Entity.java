@@ -1,4 +1,4 @@
-package uk.co.lemmily.game.board;
+package uk.co.lemmily.game.entity;
 
 import java.util.HashMap;
 import java.util.Map;
