@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import uk.co.lemmily.game.LibgdxUtils;
 import uk.co.lemmily.game.screens.GameScreen;
 import uk.co.lemmily.game.tween.ActorAccessor;
-import uk.co.lemmily.game.ui.Slot;
 
 /**
  * Created by Emily on 23/10/2014.
@@ -40,7 +39,7 @@ public class SlotActor extends ImageTextButton implements SlotListener {
     }
 
     private static ImageTextButtonStyle createStyle(Skin skin, Slot slot) {
-        TextureAtlas icons = LibgdxUtils.assets.get("icons/icons.atlas", TextureAtlas.class);
+        TextureAtlas icons = LibgdxUtils.assets.get("icons/resources.atlas", TextureAtlas.class);
         TextureRegion image;
         if (slot.getItem() != null) {
             image = icons.findRegion(slot.getItem().getTextureRegion());

@@ -2,26 +2,31 @@
 <data>
     <raw keyName="ironore" name="iron ore"> <!--//keyname must be same as image atlas name-->
         <location>mine</location>
+        <maxNum>50</maxNum>
         <output>1.0</output>
         <time>3.0</time>
     </raw>
     <raw keyName="copperore" name="copper ore">
         <location>mine</location>
+        <maxNum>50</maxNum>
         <output>1.0</output>
         <time>3.0</time>
     </raw>
     <raw keyName="coal" name="coal">
         <location>mine</location>
+        <maxNum>50</maxNum>
         <output>1.0</output>
         <time>3.0</time>
     </raw>
     <raw keyName="stone" name="stone">
         <location name="quarry">mine</location>
+        <maxNum>50</maxNum>
         <output>1.0</output>
         <time>2.5</time>
     </raw>
     <raw keyName="slag" name="slag">
         <location>furnace</location>
+        <maxNum>50</maxNum>
         <output>1.0</output>
         <time>1.0</time>
     </raw>
@@ -29,6 +34,7 @@
     <processed keyName="ironbar" name="iron bar">
         <location>furnace</location>
         <shape I="ironore" F="coal">I,F</shape>
+        <maxNum>75</maxNum>
         <need type="iron ore" amount="1"/>
         <need type="coal" amount="1"/>
         <output>1.0</output>
@@ -38,6 +44,7 @@
     <processed keyName="copperplate" name="copper plate">
         <location>furnace</location>
         <shape C="copperore" F="coal">C,F</shape>
+        <maxNum>100</maxNum>
         <need type="copperore" amount="1"/>
         <need type="coal" amount="1"/>
         <output>1.0</output>
@@ -46,6 +53,7 @@
     </processed>
     <processed keyName="copperwire" name="copper wire">
         <location>furnace</location>
+        <maxNum>200</maxNum>
         <shape C="copperplate">CC</shape>
         <need type="copperplate" amount="2"/>
         <output>2.0</output>
@@ -53,6 +61,7 @@
     </processed>
     <processed keyName="circuitboard" name="circuit board">
         <location>furnace</location>
+        <maxNum>100</maxNum>
         <shape W="copperwire" I="ironbar" O="nothing">WWW,OIO</shape>
         <need type="copperwire" amount="3"/>
         <need type="ironbar" amount="1"/>

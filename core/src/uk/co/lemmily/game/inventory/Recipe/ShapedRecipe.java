@@ -1,6 +1,6 @@
 package uk.co.lemmily.game.inventory.Recipe;
 
-import uk.co.lemmily.game.entity.Entity;
+import uk.co.lemmily.game.entity.GameObject;
 import uk.co.lemmily.game.inventory.ItemSlot;
 
 import java.util.HashMap;
@@ -17,7 +17,7 @@ public class ShapedRecipe implements Recipe {
     private String recipeString = "";
 
 
-    public ShapedRecipe(Entity item, int num, String recipe) {
+    public ShapedRecipe(GameObject item, int num, String recipe) {
         this(new ItemSlot(item, num), recipe);
     }
     

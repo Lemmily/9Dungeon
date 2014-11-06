@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import uk.co.lemmily.game.LibgdxUtils;
-import uk.co.lemmily.game.entity.Entity;
+import uk.co.lemmily.game.entity.GameObject;
 
 /**
  * Created by Emily on 23/10/2014.
@@ -42,7 +42,7 @@ public class SlotSource extends DragAndDrop.Source {
         }
         payload.setObject(payloadSlot);
 
-        TextureAtlas icons = LibgdxUtils.assets.get("icons/icons.atlas", TextureAtlas.class);
+        TextureAtlas icons = LibgdxUtils.assets.get("icons/resources.atlas", TextureAtlas.class);
         TextureRegion icon = icons.findRegion(payloadSlot.getItem().getTextureRegion());
         Actor dragActor = new Image(icon);
         payload.setDragActor(dragActor);
@@ -67,7 +67,7 @@ public class SlotSource extends DragAndDrop.Source {
                 targetSlot.add(payloadSlot.getItem(), payloadSlot.getAmount());
             } else {
                 //item in slot is not the same, so switch items.
-                Entity targetType = targetSlot.getItem();
+                GameObject targetType = targetSlot.getItem();
                 int targetAmount = targetSlot.getAmount();
                 targetSlot.take(targetAmount);
                 targetSlot.add(payloadSlot.getItem(), payloadSlot.getAmount());

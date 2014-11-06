@@ -1,7 +1,6 @@
 package uk.co.lemmily.game.new_board;
 
 import com.badlogic.gdx.utils.Array;
-import uk.co.lemmily.game.entity.Entity;
 import uk.co.lemmily.game.entity.Mob;
 
 /**
@@ -18,7 +17,12 @@ public class Board {
             for( int j =0; j < 3; j++) {
                 slots.get(i).add(new BoardSlot(new Mob(), 1));
             }
+
+
         }
+
+        slots.get(1).get(1).clear();
+        slots.get(1).get(1).add();
     }
 
     public Array<Array<BoardSlot>> getSlots() {

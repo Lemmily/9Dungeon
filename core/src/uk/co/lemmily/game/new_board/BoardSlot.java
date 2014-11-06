@@ -1,8 +1,8 @@
 package uk.co.lemmily.game.new_board;
 
-import uk.co.lemmily.game.entity.Entity;
+import uk.co.lemmily.game.entity.GameObject;
 import uk.co.lemmily.game.inventory.SlotListener;
-import uk.co.lemmily.game.ui.Slot;
+import uk.co.lemmily.game.inventory.Slot;
 
 /**
  * Created by Emily on 31/10/2014.
@@ -13,9 +13,9 @@ public class BoardSlot extends Slot {
         this(null, 0);
     }
 
-    public BoardSlot(Entity item, int amount) {
+    public BoardSlot(Entity entity, int amount) {
         if (item == null) {
-            this.item = Entity.NOTHING;
+            this.item = GameObject.NOTHING;
             this.amount = 0;
         } else {
             this.item = item;
@@ -24,7 +24,7 @@ public class BoardSlot extends Slot {
     }
 
     @Override
-    public Entity getItem() {
+    public GameObject getItem() {
         return item;
     }
 
@@ -52,7 +52,7 @@ public class BoardSlot extends Slot {
     }
 
     @Override
-    public boolean add(Entity targetType, int targetAmount) {
+    public boolean add(GameObject targetType, int targetAmount) {
         if ( item == targetType || targetAmount <= 0) {
             item = targetType;
             amount += amount;
@@ -60,6 +60,19 @@ public class BoardSlot extends Slot {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public BoardSlot copy() {
+        return new BoardSlot(this.getItem(), this.getAmount());
+    }
+
+    @Override
+    public BoardSlot clear() {
+        BoardSlot slot = this.copy();
+        this.item = GameObject.NOTHING;
+        this.amount = 0;
+        return slot;
     }
 
     private void notifyListeners() {

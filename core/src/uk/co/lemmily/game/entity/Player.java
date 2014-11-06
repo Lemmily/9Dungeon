@@ -1,6 +1,5 @@
 package uk.co.lemmily.game.entity;
 
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import uk.co.lemmily.game.PlayerInputListener;
 
 /**
@@ -17,14 +16,14 @@ public class Player extends Mob {
         evasion = 2;
     }
 
-    public void interact(Entity entity) {
+    public void interact(GameObject entity) {
         System.out.println("player interacted with " + entity);
         if (entity instanceof Mob && ! (entity instanceof Player)) {
             hurt((Mob)entity);
         }
     }
 
-    public void hurt(Entity entity) {
+    public void hurt(GameObject entity) {
         if (entity instanceof Mob) {
             Mob mob = (Mob) entity;
 

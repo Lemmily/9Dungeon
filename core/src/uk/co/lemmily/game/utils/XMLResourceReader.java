@@ -1,4 +1,4 @@
-package uk.co.lemmily.game.inventory.Recipe;
+package uk.co.lemmily.game.utils;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
@@ -12,11 +12,11 @@ import java.util.HashMap;
 /**
  * Created by Emily on 27/10/2014.
  */
-public class XMLReader {
+public class XMLResourceReader {
 
     private XmlReader reader;
 
-    public XMLReader() {
+    public XMLResourceReader() {
         reader = new XmlReader();
     }
 

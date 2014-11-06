@@ -3,7 +3,7 @@ package uk.co.lemmily.game.entity;
 /**
  * Created by Emily on 01/11/2014.
  */
-public class Mob extends Entity {
+public class Mob extends GameObject {
 
     protected int health;
     protected int evasion;
@@ -23,6 +23,7 @@ public class Mob extends Entity {
 //        magicDamage = 10;
 //        magicRes = 10;
         armour = 1;
+
     }
 
 
@@ -32,7 +33,7 @@ public class Mob extends Entity {
 //    public void hurt( tile, int x, int y, int dmg) {
 //    }
 
-    public void hurt(Entity entity) {
+    public void hurt(GameObject entity) {
     }
 
     public void takeDamage(int dmg) {

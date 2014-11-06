@@ -2,10 +2,10 @@ package uk.co.lemmily.game.inventory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
-import uk.co.lemmily.game.entity.Entity;
+import uk.co.lemmily.game.entity.GameObject;
 import uk.co.lemmily.game.inventory.Recipe.Recipe;
 import uk.co.lemmily.game.inventory.Recipe.ShapedRecipe;
-import uk.co.lemmily.game.inventory.Recipe.XMLReader;
+import uk.co.lemmily.game.utils.XMLResourceReader;
 
 import java.util.HashMap;
 
@@ -19,7 +19,7 @@ public class Crafting {
     private int numSlots;
     public int modulo;
 
-    private HashMap<String, Entity> itemTypes = new HashMap<String, Entity>();
+    private HashMap<String, GameObject> itemTypes = new HashMap<String, GameObject>();
     private HashMap<String, Recipe> recipes = new HashMap<String, Recipe>();
 
     public Crafting(int numSlots, int modulo) {
@@ -35,7 +35,7 @@ public class Crafting {
 
 
         //store items under their keynames.
-        for (Entity item : Entity.getItems().values()) itemTypes.put(item.getTextureRegion(), item);
+        for (GameObject item : GameObject.getItems().values()) itemTypes.put(item.getTextureRegion(), item);
         generateRecipes();
     }
 
@@ -105,7 +105,7 @@ public class Crafting {
             while (j < modulo) {
                 i = 1;
                 for (int k = 0; k < colLength; k++) {
-                    if (sequence.charAt(j + k * modulo) != Entity.NOTHING.getId()) {
+                    if (sequence.charAt(j + k * modulo) != GameObject.NOTHING.getId()) {
                         i = -1;
                     }
                 }
@@ -140,26 +140,12 @@ public class Crafting {
     }
 
     public void generateRecipes() {
-//        for
-//        recipes.put()
-//        ModLoader.addRecipe(
-//                new ItemStack(Block.whiteStone, 64),
-//                new Object[] {
-//                        "W $",
-//                        " S ",
-//                        "s E",
-//                        'W',
-//                        new ItemStack(Block.wood, 1, 2), '$',
-//                        Item.stick, 'S',
-//                        Block.sand, 's',
-//                        Block.sapling, 'E',
-//                        Item.enderPearl });
-//        File otherFile =
-        HashMap<String, HashMap<String, Object>> newRecipes = new XMLReader().getResources(Gdx.files.internal("resources\\resources.xml"));
+        HashMap<String, HashMap<String, Object>> newRecipes = new XMLResourceReader().getResources(Gdx.files.internal("resources\\resources.xml"));
 
         for (String item : newRecipes.keySet()) {
 
             HashMap<String, Object> structure = newRecipes.get(item);
+            GameObject.getItems().get(item).setMaxNum(Integer.parseInt(structure.get("maxNum").toString())); //add in the maxNum
             if (structure.get("category").equals("processed")) {
                 System.out.println(item + " started");
 
@@ -184,7 +170,7 @@ public class Crafting {
         if (shapeString == null) {
             System.out.println("shape null");
         }
-        HashMap<String, Entity> keys = new HashMap<String, Entity>();
+        HashMap<String, GameObject> keys = new HashMap<String, GameObject>();
 
         for (String s : rawRecipe.keySet()) {
             keys.put(s, getItemFromKeyName(rawRecipe.get(s)));
@@ -202,7 +188,7 @@ public class Crafting {
         return recipeString;
     }
 
-    private Entity getItemFromKeyName(String keyName) {
+    private GameObject getItemFromKeyName(String keyName) {
         return itemTypes.get(keyName);
     }
 

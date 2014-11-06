@@ -1,14 +1,13 @@
 package uk.co.lemmily.game.inventory;
 
-import uk.co.lemmily.game.entity.Entity;
-import uk.co.lemmily.game.ui.Slot;
+import uk.co.lemmily.game.entity.GameObject;
 
 /**
  * Created by Emily on 23/10/2014.
  */
 public class ItemSlot extends Slot {
 
-    public ItemSlot(Entity item, int amount) {
+    public ItemSlot(GameObject item, int amount) {
         this.item = item;
         this.amount =  amount;
     }
@@ -26,7 +25,7 @@ public class ItemSlot extends Slot {
      * @param amount
      */
     public boolean add(int amount) {
-        if (this.item != null) {
+        if (this.item != null && getAmount() < getMaxAmount()) {
             this.amount += amount;
             notifyListeners();
             return true;
@@ -34,8 +33,8 @@ public class ItemSlot extends Slot {
         return false;
     }
 
-    public boolean add(Entity item, int amount) {
-        if ( this.item == item || this.item == null) {
+    public boolean add(GameObject item, int amount) {
+        if ((this.item == item || this.item == null) && getAmount() < getMaxAmount()) {
             this.item = item;
             this.amount += amount;
             notifyListeners();
@@ -70,21 +69,22 @@ public class ItemSlot extends Slot {
         }
     }
 
-    public Entity getItem() {
+    public GameObject getItem() {
         return item;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
-//    @Override
-//    public String toString() {
-//        return "Slot[" + item + ":" + amount + "]";
-//    }
-
+    @Override
     public ItemSlot copy() {
         return new ItemSlot(item, amount);
+    }
+
+    @Override
+    public ItemSlot clear() {
+        ItemSlot slot = this.copy();
+        this.item = GameObject.NOTHING;
+        this.amount = 0;
+
+        return slot;
     }
 
     public void empty() {
