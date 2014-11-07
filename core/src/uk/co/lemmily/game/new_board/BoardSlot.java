@@ -1,30 +1,43 @@
 package uk.co.lemmily.game.new_board;
 
 import uk.co.lemmily.game.entity.GameObject;
-import uk.co.lemmily.game.inventory.SlotListener;
+import uk.co.lemmily.game.entity.ObjectType;
 import uk.co.lemmily.game.inventory.Slot;
+import uk.co.lemmily.game.inventory.SlotListener;
 
 /**
  * Created by Emily on 31/10/2014.
  */
 public class BoardSlot extends Slot {
 
+    private GameObject object;
+
     public BoardSlot() {
         this(null, 0);
     }
 
-    public BoardSlot(Entity entity, int amount) {
-        if (item == null) {
-            this.item = GameObject.NOTHING;
+    public BoardSlot(GameObject object, int amount) {
+        if (object == null) {
+            this.object = null;
+            this.item = ObjectType.NOTHING;
             this.amount = 0;
         } else {
-            this.item = item;
+            this.object = object;
+            this.item = object.getItem();
             this.amount = amount;
         }
     }
 
+
+    public void put(GameObject object) {
+        clear();
+        this.object = object;
+        this.item = object.getItem();
+    }
+
     @Override
-    public GameObject getItem() {
+    public ObjectType getItem() {
+        if (object != null) return object.getItem();
         return item;
     }
 
@@ -52,8 +65,8 @@ public class BoardSlot extends Slot {
     }
 
     @Override
-    public boolean add(GameObject targetType, int targetAmount) {
-        if ( item == targetType || targetAmount <= 0) {
+    public boolean add(ObjectType targetType, int targetAmount) {
+        if (item == targetType || targetAmount <= 0) {
             item = targetType;
             amount += amount;
             notifyListeners();
@@ -64,13 +77,13 @@ public class BoardSlot extends Slot {
 
     @Override
     public BoardSlot copy() {
-        return new BoardSlot(this.getItem(), this.getAmount());
+        return new BoardSlot(this.getObject(), this.getAmount());
     }
 
     @Override
     public BoardSlot clear() {
         BoardSlot slot = this.copy();
-        this.item = GameObject.NOTHING;
+        this.item = ObjectType.NOTHING;
         this.amount = 0;
         return slot;
     }
@@ -79,5 +92,10 @@ public class BoardSlot extends Slot {
         for (SlotListener slotListener : slotListeners) {
             slotListener.hasChanged(this);
         }
+    }
+
+
+    public GameObject getObject() {
+        return object;
     }
 }

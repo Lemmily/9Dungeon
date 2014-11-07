@@ -1,13 +1,13 @@
 package uk.co.lemmily.game.inventory;
 
-import uk.co.lemmily.game.entity.GameObject;
+import uk.co.lemmily.game.entity.ObjectType;
 
 /**
  * Created by Emily on 23/10/2014.
  */
 public class ItemSlot extends Slot {
 
-    public ItemSlot(GameObject item, int amount) {
+    public ItemSlot(ObjectType item, int amount) {
         this.item = item;
         this.amount =  amount;
     }
@@ -33,7 +33,7 @@ public class ItemSlot extends Slot {
         return false;
     }
 
-    public boolean add(GameObject item, int amount) {
+    public boolean add(ObjectType item, int amount) {
         if ((this.item == item || this.item == null) && getAmount() < getMaxAmount()) {
             this.item = item;
             this.amount += amount;
@@ -69,7 +69,7 @@ public class ItemSlot extends Slot {
         }
     }
 
-    public GameObject getItem() {
+    public ObjectType getItem() {
         return item;
     }
 
@@ -81,7 +81,7 @@ public class ItemSlot extends Slot {
     @Override
     public ItemSlot clear() {
         ItemSlot slot = this.copy();
-        this.item = GameObject.NOTHING;
+        this.item = ObjectType.NOTHING;
         this.amount = 0;
 
         return slot;

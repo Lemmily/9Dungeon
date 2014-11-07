@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import uk.co.lemmily.game.LibgdxUtils;
-import uk.co.lemmily.game.entity.GameObject;
+import uk.co.lemmily.game.entity.ObjectType;
 
 /**
  * Created by Emily on 23/10/2014.
@@ -67,7 +67,7 @@ public class SlotSource extends DragAndDrop.Source {
                 targetSlot.add(payloadSlot.getItem(), payloadSlot.getAmount());
             } else {
                 //item in slot is not the same, so switch items.
-                GameObject targetType = targetSlot.getItem();
+                ObjectType targetType = targetSlot.getItem();
                 int targetAmount = targetSlot.getAmount();
                 targetSlot.take(targetAmount);
                 targetSlot.add(payloadSlot.getItem(), payloadSlot.getAmount());

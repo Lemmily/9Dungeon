@@ -2,7 +2,7 @@ package uk.co.lemmily.game.inventory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
-import uk.co.lemmily.game.entity.GameObject;
+import uk.co.lemmily.game.entity.ObjectType;
 import uk.co.lemmily.game.inventory.Recipe.Recipe;
 import uk.co.lemmily.game.inventory.Recipe.ShapedRecipe;
 import uk.co.lemmily.game.utils.XMLResourceReader;
@@ -19,7 +19,7 @@ public class Crafting {
     private int numSlots;
     public int modulo;
 
-    private HashMap<String, GameObject> itemTypes = new HashMap<String, GameObject>();
+    private HashMap<String, ObjectType> itemTypes = new HashMap<String, ObjectType>();
     private HashMap<String, Recipe> recipes = new HashMap<String, Recipe>();
 
     public Crafting(int numSlots, int modulo) {
@@ -35,7 +35,7 @@ public class Crafting {
 
 
         //store items under their keynames.
-        for (GameObject item : GameObject.getItems().values()) itemTypes.put(item.getTextureRegion(), item);
+        for (ObjectType item : ObjectType.getItems().values()) itemTypes.put(item.getTextureRegion(), item);
         generateRecipes();
     }
 
@@ -105,7 +105,7 @@ public class Crafting {
             while (j < modulo) {
                 i = 1;
                 for (int k = 0; k < colLength; k++) {
-                    if (sequence.charAt(j + k * modulo) != GameObject.NOTHING.getId()) {
+                    if (sequence.charAt(j + k * modulo) != ObjectType.NOTHING.getId()) {
                         i = -1;
                     }
                 }
@@ -145,7 +145,7 @@ public class Crafting {
         for (String item : newRecipes.keySet()) {
 
             HashMap<String, Object> structure = newRecipes.get(item);
-            GameObject.getItems().get(item).setMaxNum(Integer.parseInt(structure.get("maxNum").toString())); //add in the maxNum
+            ObjectType.getItems().get(item).setMaxNum(Integer.parseInt(structure.get("maxNum").toString())); //add in the maxNum
             if (structure.get("category").equals("processed")) {
                 System.out.println(item + " started");
 
@@ -170,7 +170,7 @@ public class Crafting {
         if (shapeString == null) {
             System.out.println("shape null");
         }
-        HashMap<String, GameObject> keys = new HashMap<String, GameObject>();
+        HashMap<String, ObjectType> keys = new HashMap<String, ObjectType>();
 
         for (String s : rawRecipe.keySet()) {
             keys.put(s, getItemFromKeyName(rawRecipe.get(s)));
@@ -188,7 +188,7 @@ public class Crafting {
         return recipeString;
     }
 
-    private GameObject getItemFromKeyName(String keyName) {
+    private ObjectType getItemFromKeyName(String keyName) {
         return itemTypes.get(keyName);
     }
 

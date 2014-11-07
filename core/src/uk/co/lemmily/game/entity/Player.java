@@ -10,6 +10,7 @@ public class Player extends Mob {
     private PlayerInputListener input = new PlayerInputListener();
 
     public Player() {
+        super(new ObjectType("player"));
         health = 50;
         damage = 10;
         armour = 1;

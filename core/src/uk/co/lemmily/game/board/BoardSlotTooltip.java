@@ -4,8 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import uk.co.lemmily.game.inventory.ItemSlot;
+import uk.co.lemmily.game.inventory.Slot;
 import uk.co.lemmily.game.inventory.SlotListener;
-import uk.co.lemmily.game.ui.Slot;
 
 /**
  * Created by Emily on 23/10/2014.

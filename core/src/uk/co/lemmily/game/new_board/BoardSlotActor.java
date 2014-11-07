@@ -31,7 +31,7 @@ public class BoardSlotActor extends ImageButton {
 //            }
 //        });
 //
-        TextureAtlas icons = LibgdxUtils.assets.get("icons/tiles.atlas", TextureAtlas.class);
+//        TextureAtlas icons = LibgdxUtils.assets.get("icons/tiles.atlas", TextureAtlas.class);
 
 //        clearChildren();
 //        this.addActor(new Image(icons.findRegion("bg")));
@@ -40,7 +40,7 @@ public class BoardSlotActor extends ImageButton {
     }
 
     private static ImageButtonStyle createStyle(Skin skin, BoardSlot slot) {
-        TextureAtlas icons = LibgdxUtils.assets.get("icons/icons.atlas", TextureAtlas.class);
+        TextureAtlas icons = LibgdxUtils.assets.get("icons/tiles.atlas", TextureAtlas.class);
         TextureRegion image;
         if (slot.getItem() != null) {
             image = icons.findRegion(slot.getItem().getTextureRegion());

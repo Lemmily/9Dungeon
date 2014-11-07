@@ -23,14 +23,14 @@ public class BoardActor extends Window {
         for (Array<BoardSlot> slots : board.getSlots()) {
             for (int j = 0; j < slots.size; j++) {
                 final BoardSlot slot = slots.get(j);
-                final BoardSlotActor slotActor = new uk.co.lemmily.game.new_board.BoardSlotActor(skin, slot);
+                final BoardSlotActor slotActor = new BoardSlotActor(skin, slot);
                 slotActor.addListener(new ClickListener() {
                     @Override
                     public void clicked (InputEvent event, float x, float y) {
                         int btn = event.getButton();
                         if (btn == Input.Buttons.LEFT) {
                             //todo: link player interaction
-                            player.interact(slot.getItem());
+                            player.interact(slot.getObject());
                         } else {
                             //todo: link to updating display of ui? HOW DOES THIS WORK ARGH
                             LibgdxUtils libgdxUtils = (LibgdxUtils) Gdx.app.getApplicationListener();

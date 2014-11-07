@@ -6,18 +6,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import uk.co.lemmily.game.entity.Player;
-import uk.co.lemmily.game.entity.PlayerActor;
 import uk.co.lemmily.game.inventory.Crafting;
 import uk.co.lemmily.game.inventory.CraftingActor;
 import uk.co.lemmily.game.inventory.Inventory;
 import uk.co.lemmily.game.inventory.InventoryActor;
 import uk.co.lemmily.game.new_board.Board;
 import uk.co.lemmily.game.new_board.BoardActor;
-import uk.co.lemmily.game.ui.DragAndDropLocked;
 
 /**
  * Created by Emily on 23/10/2014.
@@ -27,7 +24,6 @@ public class GameScreen implements Screen {
     private InventoryActor inventoryActor;
     private CraftingActor craftingActor;
     private BoardActor boardActor;
-    private PlayerActor playerActor;
 
     @Override
     public void show() {
@@ -46,7 +42,6 @@ public class GameScreen implements Screen {
         Board board = new Board();
 
         Player player = new Player();
-        playerActor = new PlayerActor(player);
 
         inventoryActor = new InventoryActor(inventory, dragAndDrop, skin);
         craftingActor = new CraftingActor(crafting, inventory, dragAndDrop, skin);

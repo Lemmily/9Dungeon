@@ -41,7 +41,7 @@ import uk.co.lemmily.game.screens.GameScreen;
  * This is the very first {@link Screen} which is shown when the game starts. It
  * loads the most common resources and displays a splash image for a couple of
  * seconds. The most common resources are the ones needed for the main menu,
- * lobby and options screen. The {@link LoadingScreen} will be responsible to
+ * lobby and options screen. The {@link } will be responsible to
  * load all resources needed for the gaming screen.
  *
  * @author Daniel Holderbaum
@@ -63,9 +63,9 @@ public class SplashScreen implements Screen {
         splash = LibgdxUtils.assets.get("textures/splash.png", Texture.class);
 
         LibgdxUtils.assets.load("skins/uiskin.json", Skin.class);
+        LibgdxUtils.assets.load("icons/tiles.atlas", TextureAtlas.class);
         LibgdxUtils.assets.load("icons/resources.atlas", TextureAtlas.class);
         LibgdxUtils.assets.load("icons/icons.atlas", TextureAtlas.class);
-        LibgdxUtils.assets.load("icons/tiles.atlas", TextureAtlas.class);
 
 
         camera = new OrthographicCamera();

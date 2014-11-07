@@ -2,6 +2,7 @@ package uk.co.lemmily.game.new_board;
 
 import com.badlogic.gdx.utils.Array;
 import uk.co.lemmily.game.entity.Mob;
+import uk.co.lemmily.game.entity.ObjectType;
 
 /**
  * Created by Emily on 30/10/2014.
@@ -15,14 +16,13 @@ public class Board {
         for( int i = 0; i < 3; i++) {
             slots.add(new Array<BoardSlot>(3));
             for( int j =0; j < 3; j++) {
-                slots.get(i).add(new BoardSlot(new Mob(), 1));
+                slots.get(i).add(new BoardSlot(new Mob(new ObjectType()), 1));
             }
 
 
         }
 
-        slots.get(1).get(1).clear();
-        slots.get(1).get(1).add();
+        slots.get(1).get(1).put(new Mob(new ObjectType("monster_goblin_default", "goblin", 4)));
     }
 
     public Array<Array<BoardSlot>> getSlots() {

@@ -24,4 +24,4 @@ public void render () {
         batch.draw(img, 0, 0);
         batch.end();
         }
-        }
+       }
