@@ -3,6 +3,7 @@ package uk.co.lemmily.game.new_board;
 import com.badlogic.gdx.utils.Array;
 import uk.co.lemmily.game.entity.Mob;
 import uk.co.lemmily.game.entity.ObjectType;
+import uk.co.lemmily.game.entity.Player;
 
 /**
  * Created by Emily on 30/10/2014.
@@ -22,7 +23,7 @@ public class Board {
 
         }
 
-        slots.get(1).get(1).put(new Mob(new ObjectType("monster_goblin_default", "goblin", 4)));
+        slots.get(1).get(1).put(new Player());
     }
 
     public Array<Array<BoardSlot>> getSlots() {

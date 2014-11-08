@@ -6,11 +6,11 @@ package uk.co.lemmily.game.entity;
 public class ItemDrop extends GameObject {
 
     public ItemDrop(ObjectType item) {
-        this.item = item;
+        this.objectType = item;
     }
 
     @Override
-    public ObjectType getItem() {
-        return item;
+    public ObjectType getType() {
+        return objectType;
     }
 }

@@ -55,13 +55,13 @@ public class CraftingActor extends Window{
                 ItemSlot slot = crafting.getRecipe(crafting.getCraftingSequence());
                 if (slot != null) {
                     //remove all items from input slots.
-                    if (crafting.result.add(slot.getItem(), slot.getAmount()) ) {
-                        //todo: remove items
+                    if (crafting.result.add(slot.getObjectType(), slot.getAmount()) >= 0) {
+                        //fixme - make appropriate number of items for the amount of items present.
                         //fixme: make more clever
                         crafting.clearSlots();
                     } else {
                         slotActor.shake();
-                        //todo: dont do it.
+                        //todo: cant do it.
                     }
                 }
             }

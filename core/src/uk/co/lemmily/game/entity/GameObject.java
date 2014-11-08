@@ -7,13 +7,13 @@ package uk.co.lemmily.game.entity;
  */
 public abstract class GameObject {
 
-    protected ObjectType item;
+    protected ObjectType objectType;
 
-    public ObjectType getItem() {
-        return item;
+    public ObjectType getType() {
+        return objectType;
     }
 
     public String toString() {
-        return "" + item.getTextureRegion();
+        return "" + objectType.getTextureRegion();
     }
 }

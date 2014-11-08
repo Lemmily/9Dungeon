@@ -2,14 +2,8 @@ package uk.co.lemmily.game.new_board;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton.ImageTextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import uk.co.lemmily.game.LibgdxUtils;
 
@@ -35,15 +29,15 @@ public class BoardSlotActor extends ImageButton {
 
 //        clearChildren();
 //        this.addActor(new Image(icons.findRegion("bg")));
-//        this.addActor(new Image(icons.findRegion(slot.getItem().getTextureRegion())));
+//        this.addActor(new Image(icons.findRegion(slot.getType().getTextureRegion())));
         pack();
     }
 
     private static ImageButtonStyle createStyle(Skin skin, BoardSlot slot) {
         TextureAtlas icons = LibgdxUtils.assets.get("icons/tiles.atlas", TextureAtlas.class);
         TextureRegion image;
-        if (slot.getItem() != null) {
-            image = icons.findRegion(slot.getItem().getTextureRegion());
+        if (slot.getObjectType() != null) {
+            image = icons.findRegion(slot.getObjectType().getTextureRegion());
         } else {
             //special empty
             image = icons.findRegion("default");

@@ -8,32 +8,84 @@ import uk.co.lemmily.game.entity.ObjectType;
  */
 public abstract class Slot {
 
-    protected ObjectType item;
+    protected ObjectType objectType;
     protected int amount;
-    protected int maxAmount;
     protected Array<SlotListener> slotListeners = new Array<SlotListener>();
 
 
-    public abstract ObjectType getItem();
+    public ObjectType getObjectType() {
+        return objectType;
+    }
 
-    public abstract boolean isEmpty();
 
     public int getAmount() {
         return amount;
     }
+
     public int getMaxAmount() {
-        return maxAmount;
+        if (objectType != null)   return objectType.getMaxNum();
+        else                return 0;
     }
 
-    public abstract boolean take(int amount);
+    public boolean take(int amount) {
+        if (this.amount >= amount) {
+            this.amount -= amount;
+            if (this.amount <= 0) {
+                objectType = null;
+            }
+            notifyListeners();
+            return true;
+        }
+        return false;
+    }
 
-    public abstract boolean add(ObjectType targetType, int targetAmount);
+    public int add(ObjectType item, int amount) {
+
+        int num = -1;
+        if ((this.objectType == item || this.objectType == null)) {
+            this.objectType = item;
+            if (getAmount() + amount < getMaxAmount())
+                this.amount += amount;
+            else {
+                num = this.amount + amount;
+                this.amount = getMaxAmount();
+                num = num % getMaxAmount();
+            }
+            notifyListeners();
+            num = 0;
+        }
+
+        // num values: -1 UNSUCCESSFUL, 0 COMPLETE SUCCESS, 0 < SUCCESS WITH LEFTOVERS
+        return  num;
+    }
+
 
     public String toString() {
-        return "Slot[" + item + ":" + amount + "]";
+        return "Slot[" + objectType + ":" + amount + "]";
     };
 
     public abstract Slot copy();
 
     public abstract Slot clear();
+
+
+    public boolean isEmpty() {
+        return objectType == null || amount <= 0;
+    }
+
+
+
+    public void addListener(SlotListener slotListener) {
+        slotListeners.add(slotListener);
+    }
+
+    public void removeListener(SlotListener slotListener) {
+        slotListeners.removeValue(slotListener, true);
+    }
+
+    protected void notifyListeners() {
+        for (SlotListener slotListener : slotListeners) {
+            slotListener.hasChanged(this);
+        }
+    }
 }

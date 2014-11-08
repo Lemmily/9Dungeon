@@ -25,7 +25,7 @@ public class Inventory {
         for (ItemSlot slot : slots) {
             ObjectType e = (ObjectType) ObjectType.getItems().values().toArray()[MathUtils.random(0, ObjectType.getItems().values().size() - 1)];
             slot.add(e, MathUtils.random(1, e.getMaxNum()));
-            if (slot.getItem() == ObjectType.NOTHING) {
+            if (slot.getObjectType() == ObjectType.NOTHING) {
                 slot.clear();
             }
         }
@@ -41,13 +41,13 @@ public class Inventory {
     /**
      *
      * @param item type to check for
-     * @return amount of item type present.
+     * @return amount of objectType type present.
      */
     public int checkInventory(ObjectType item) {
         int amount = 0;
 
         for (ItemSlot slot : slots) {
-            if ( slot.getItem() == item) {
+            if ( slot.getObjectType() == item) {
                 amount += slot.getAmount();
             }
         }
@@ -83,7 +83,7 @@ public class Inventory {
 
     private ItemSlot firstSlotWithItem(ObjectType item) {
         for (ItemSlot slot : slots) {
-            if (slot.getItem() == item) {
+            if (slot.getObjectType() == item) {
                 return slot;
             }
         }

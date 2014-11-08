@@ -33,17 +33,17 @@ public class SlotSource extends DragAndDrop.Source {
         DragAndDrop.Payload payload = new Payload();
         ItemSlot payloadSlot;
         if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-            payloadSlot = new ItemSlot(sourceSlot.getItem(), 1);
+            payloadSlot = new ItemSlot(sourceSlot.getObjectType(), 1);
             sourceSlot.take(1);
         } else {
 
-            payloadSlot = new ItemSlot(sourceSlot.getItem(), sourceSlot.getAmount());
+            payloadSlot = new ItemSlot(sourceSlot.getObjectType(), sourceSlot.getAmount());
             sourceSlot.take(sourceSlot.getAmount());
         }
         payload.setObject(payloadSlot);
 
         TextureAtlas icons = LibgdxUtils.assets.get("icons/resources.atlas", TextureAtlas.class);
-        TextureRegion icon = icons.findRegion(payloadSlot.getItem().getTextureRegion());
+        TextureRegion icon = icons.findRegion(payloadSlot.getObjectType().getTextureRegion());
         Actor dragActor = new Image(icon);
         payload.setDragActor(dragActor);
 
@@ -62,20 +62,20 @@ public class SlotSource extends DragAndDrop.Source {
 
         if (target != null) {
             ItemSlot targetSlot =((SlotActor) target.getActor()).getSlot();
-            //if item is the same, stack it.
-            if (targetSlot.getItem() == payloadSlot.getItem() || targetSlot.getItem() == null) {
-                targetSlot.add(payloadSlot.getItem(), payloadSlot.getAmount());
+            //if objectType is the same, stack it.
+            if (targetSlot.getObjectType() == payloadSlot.getObjectType() || targetSlot.getObjectType() == null) {
+                targetSlot.add(payloadSlot.getObjectType(), payloadSlot.getAmount());
             } else {
-                //item in slot is not the same, so switch items.
-                ObjectType targetType = targetSlot.getItem();
+                //objectType in slot is not the same, so switch items.
+                ObjectType targetType = targetSlot.getObjectType();
                 int targetAmount = targetSlot.getAmount();
                 targetSlot.take(targetAmount);
-                targetSlot.add(payloadSlot.getItem(), payloadSlot.getAmount());
+                targetSlot.add(payloadSlot.getObjectType(), payloadSlot.getAmount());
                 sourceSlot.add(targetType, targetAmount);
             }
         } else {
             //invalid drop location, put it back to whence it came!
-            sourceSlot.add(payloadSlot.getItem(), payloadSlot.getAmount());
+            sourceSlot.add(payloadSlot.getObjectType(), payloadSlot.getAmount());
         }
     }
 }

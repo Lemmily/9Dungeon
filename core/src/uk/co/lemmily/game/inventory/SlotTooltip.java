@@ -29,9 +29,9 @@ public class SlotTooltip extends Window implements SlotListener {
             return;
         }
 
-        setTitle(slot.getAmount() + "x " + slot.getItem());
+        setTitle(slot.getAmount() + "x " + slot.getObjectType());
         clear();
-        Label label = new Label("Super awesome description of " + slot.getItem(), skin);
+        Label label = new Label("Super awesome description of " + slot.getObjectType(), skin);
         add(label);
         pack();
     }

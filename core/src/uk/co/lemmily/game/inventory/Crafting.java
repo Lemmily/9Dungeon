@@ -31,7 +31,12 @@ public class Crafting {
             slots.add(new ItemSlot(null, 0));
         }
 
-        this.result = new ItemSlot(null, 0);
+        this.result = new ItemSlot(null, 0) {
+            @Override
+            public int getMaxAmount() {
+                return 1000; //special slot allows more to stack here.
+            }
+        };
 
 
         //store items under their keynames.
@@ -45,8 +50,8 @@ public class Crafting {
 
         //do some magic
         for (ItemSlot slot : slots) {
-            if (slot.getItem() != null) {
-                sequence += String.valueOf(slot.getItem().getId());
+            if (slot.getObjectType() != null) {
+                sequence += String.valueOf(slot.getObjectType().getId());
             } else {
                 sequence += " ";
             }
@@ -149,7 +154,7 @@ public class Crafting {
             if (structure.get("category").equals("processed")) {
                 System.out.println(item + " started");
 
-//                Entity item = Entity.items.values().toArray(Entity[].class)[]
+//                Entity objectType = Entity.items.values().toArray(Entity[].class)[]
                 ItemSlot slot = new ItemSlot(itemTypes.get(structure.get("keyName")), (int)Float.parseFloat(structure.get("output").toString()));
 
 

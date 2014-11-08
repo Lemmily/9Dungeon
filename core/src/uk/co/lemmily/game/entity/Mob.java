@@ -1,9 +1,15 @@
 package uk.co.lemmily.game.entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Emily on 01/11/2014.
  */
 public class Mob extends GameObject{
+
+    public static final Map<String, ObjectType> mobs = new HashMap<String, ObjectType>();
+
 
     protected int health;
     protected int evasion;
@@ -14,7 +20,7 @@ public class Mob extends GameObject{
 
 
     public Mob(ObjectType type) {
-        item = type;
+        objectType = type;
 
         health = 10;
         evasion = 1;
@@ -23,6 +29,9 @@ public class Mob extends GameObject{
 //        magicRes = 10;
         armour = 1;
 
+        if( ! mobs.containsValue(objectType)) {
+            mobs.put(objectType.getTextureRegion(), objectType);
+        }
     }
 
 

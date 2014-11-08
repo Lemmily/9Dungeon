@@ -41,8 +41,8 @@ public class SlotActor extends ImageTextButton implements SlotListener {
     private static ImageTextButtonStyle createStyle(Skin skin, Slot slot) {
         TextureAtlas icons = LibgdxUtils.assets.get("icons/resources.atlas", TextureAtlas.class);
         TextureRegion image;
-        if (slot.getItem() != null) {
-            image = icons.findRegion(slot.getItem().getTextureRegion());
+        if (slot.getObjectType() != null) {
+            image = icons.findRegion(slot.getObjectType().getTextureRegion());
         } else {
             //special empty
             image = icons.findRegion("default");
@@ -52,10 +52,10 @@ public class SlotActor extends ImageTextButton implements SlotListener {
         style.imageUp = new TextureRegionDrawable(image);
         style.imageDown = new TextureRegionDrawable(image);
 
-//        style.imageUp.setMinWidth(image.getRegionWidth() * 2);
-//        style.imageUp.setMinHeight(image.getRegionHeight() * 2);
-//        style.imageDown.setMinWidth(image.getRegionWidth() * 2);
-//        style.imageDown.setMinHeight(image.getRegionHeight() * 2);
+        style.imageUp.setMinWidth(image.getRegionWidth() * 2);
+        style.imageUp.setMinHeight(image.getRegionHeight() * 2);
+        style.imageDown.setMinWidth(image.getRegionWidth() * 2);
+        style.imageDown.setMinHeight(image.getRegionHeight() * 2);
 
         return style;
     }
