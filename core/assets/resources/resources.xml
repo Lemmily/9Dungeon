@@ -31,7 +31,7 @@
         <time>1.0</time>
     </raw>
 
-    <processed keyName="ironbar" name="iron bar">
+    <processed keyName="iron" name="iron">
         <location>furnace</location>
         <shape I="ironore" F="coal">I,F</shape>
         <maxNum>75</maxNum>
@@ -41,7 +41,7 @@
         <time>1.0</time>
         <byproduct type="slag" amount="0.1" chance="0.1"/>
     </processed>
-    <processed keyName="copperplate" name="copper plate">
+    <processed keyName="copper" name="copper plate">
         <location>furnace</location>
         <shape C="copperore" F="coal">C,F</shape>
         <maxNum>100</maxNum>
@@ -54,17 +54,17 @@
     <processed keyName="copperwire" name="copper wire">
         <location>furnace</location>
         <maxNum>200</maxNum>
-        <shape C="copperplate">CC</shape>
-        <need type="copperplate" amount="2"/>
+        <shape C="copper">CC</shape>
+        <need type="copper" amount="2"/>
         <output>2.0</output>
         <time>0.5</time>
     </processed>
     <processed keyName="circuitboard" name="circuit board">
         <location>furnace</location>
         <maxNum>100</maxNum>
-        <shape W="copperwire" I="ironbar" O="nothing">WWW,OIO</shape>
+        <shape W="copperwire" I="iron" O="nothing">WWW,OIO</shape>
         <need type="copperwire" amount="3"/>
-        <need type="ironbar" amount="1"/>
+        <need type="iron" amount="1"/>
         <output>1.0</output>
         <time>5.5</time>
     </processed>

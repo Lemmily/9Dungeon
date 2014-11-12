@@ -14,13 +14,13 @@ import uk.co.lemmily.game.tween.ActorAccessor;
 /**
  * Created by Emily on 23/10/2014.
  */
-public class SlotActor extends ImageTextButton implements SlotListener {
+public class ItemSlotActor extends ImageTextButton implements SlotListener {
 
 
     private final Skin skin;
     private final ItemSlot slot;
 
-    public SlotActor(Skin skin, ItemSlot slot) {
+    public ItemSlotActor(Skin skin, ItemSlot slot) {
         super(String.valueOf(slot.getAmount()), createStyle(skin, slot));
         this.slot = slot;
         this.skin = skin;
@@ -49,6 +49,10 @@ public class SlotActor extends ImageTextButton implements SlotListener {
         }
 
         ImageTextButtonStyle style = new ImageTextButtonStyle(skin.get(ImageTextButtonStyle.class));
+        if (image == null) {
+            System.out.println("FUUU");
+            image = icons.findRegion("nothing");
+        }
         style.imageUp = new TextureRegionDrawable(image);
         style.imageDown = new TextureRegionDrawable(image);
 

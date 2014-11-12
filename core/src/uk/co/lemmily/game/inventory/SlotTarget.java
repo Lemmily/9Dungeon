@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 public class SlotTarget extends DragAndDrop.Target {
     private Slot targetSlot;
 
-    public SlotTarget(SlotActor actor) {
+    public SlotTarget(ItemSlotActor actor) {
         super(actor);
         targetSlot = actor.getSlot();
         getActor().setColor(Color.LIGHT_GRAY);

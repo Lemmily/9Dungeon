@@ -26,7 +26,7 @@ public class CraftingActor extends Window{
         int i = 0;
         for (ItemSlot slot : crafting.getSlots()) {
 
-            SlotActor slotActor = new SlotActor(skin, slot);
+            ItemSlotActor slotActor = new ItemSlotActor(skin, slot);
             dragAndDrop.addSource(new SlotSource(slotActor));
             dragAndDrop.addTarget(new SlotTarget(slotActor));
             add(slotActor);
@@ -43,7 +43,7 @@ public class CraftingActor extends Window{
         row();
 
         //out put slot.
-        final SlotActor slotActor = new SlotActor(skin, crafting.result);
+        final ItemSlotActor slotActor = new ItemSlotActor(skin, crafting.result);
         dragAndDrop.addSource(new SlotSource(slotActor));
         add(slotActor).left();
 

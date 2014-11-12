@@ -17,7 +17,7 @@ public class Board {
         for( int i = 0; i < 3; i++) {
             slots.add(new Array<BoardSlot>(3));
             for( int j =0; j < 3; j++) {
-                slots.get(i).add(new BoardSlot(new Mob(new ObjectType()), 1));
+                slots.get(i).add(new BoardSlot(new Mob(ObjectType.GOBLIN), 1));
             }
 
 

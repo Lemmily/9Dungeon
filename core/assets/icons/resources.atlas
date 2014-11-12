@@ -4,70 +4,91 @@ filter: Nearest,Nearest
 repeat: none
 coal
   rotate: false
-  xy: 2, 2
+  xy: 0, 0
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+slag
+  rotate: false
+  xy: 0, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 copper
   rotate: false
-  xy: 20, 2
+  xy: 16, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 copperore
   rotate: false
-  xy: 38, 2
+  xy: 32, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 gold
   rotate: false
-  xy: 2, 20
+  xy: 48, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 goldore
   rotate: false
-  xy: 20, 20
+  xy: 64, 0
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+copperwire
+  rotate: false
+  xy: 48, 0
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+circuitboard
+  rotate: false
+  xy: 64, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 iron
   rotate: false
-  xy: 38, 20
+  xy: 80, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 ironore
   rotate: false
-  xy: 2, 38
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
-silver
-  rotate: false
-  xy: 20, 38
+  xy: 96, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 nothing
   rotate: false
-  xy: 38, 38
+  xy: 112, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-default
+silver
   rotate: false
-  xy: 38, 38
+  xy: 128, 0
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+steel
+  rotate: false
+  xy: 144, 0
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

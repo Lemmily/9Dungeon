@@ -19,7 +19,7 @@ import uk.co.lemmily.game.entity.ObjectType;
 public class SlotSource extends DragAndDrop.Source {
     private ItemSlot sourceSlot;
 
-    public SlotSource(SlotActor actor) {
+    public SlotSource(ItemSlotActor actor) {
         super(actor);
         this.sourceSlot = actor.getSlot();
     }
@@ -61,7 +61,7 @@ public class SlotSource extends DragAndDrop.Source {
         ItemSlot payloadSlot = (ItemSlot) payload.getObject();
 
         if (target != null) {
-            ItemSlot targetSlot =((SlotActor) target.getActor()).getSlot();
+            ItemSlot targetSlot =((ItemSlotActor) target.getActor()).getSlot();
             //if objectType is the same, stack it.
             if (targetSlot.getObjectType() == payloadSlot.getObjectType() || targetSlot.getObjectType() == null) {
                 targetSlot.add(payloadSlot.getObjectType(), payloadSlot.getAmount());

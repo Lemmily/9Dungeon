@@ -18,10 +18,12 @@ public class ObjectType {
     public static ObjectType COAL = new ObjectType("coal", "resource");
     public static ObjectType STONE = new ObjectType("stone", "resource");
     public static ObjectType SLAG = new ObjectType("slag", "resource");
-    public static ObjectType IRON_BAR = new ObjectType("ironbar", "resource");
-    public static ObjectType COPPER_PLATE = new ObjectType("copperplate", "resource");
+    public static ObjectType IRON = new ObjectType("iron", "resource");
+    public static ObjectType COPPER_PLATE = new ObjectType("copper", "resource");
     public static ObjectType COPPER_WIRE = new ObjectType("copperwire", "resource");
     public static ObjectType CIRCUIT_BOARD = new ObjectType("circuitboard", "resource");
+
+    public static  ObjectType GOBLIN = new ObjectType("goblin", "monster");
 
     //though this one can stay here
     public static ObjectType NOTHING = new ObjectType("nothing", ' ');

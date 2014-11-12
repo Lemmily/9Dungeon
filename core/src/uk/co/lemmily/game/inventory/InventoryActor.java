@@ -23,7 +23,7 @@ public class InventoryActor extends Window {
         int i = 0;
         for (ItemSlot slot : inventory.getSlots()) {
             //create the "drag and drop"
-            SlotActor slotActor = new SlotActor(skin, slot);
+            ItemSlotActor slotActor = new ItemSlotActor(skin, slot);
             dragAndDrop.addSource(new SlotSource(slotActor));
             dragAndDrop.addTarget(new SlotTarget(slotActor));
 
