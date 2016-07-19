@@ -33,6 +33,7 @@ public class ObjectType {
     protected int maxNum; //how many you can have in one stack
     protected String textureRegion;
     protected String category;
+    protected String keyName;
 
 
 
@@ -58,6 +59,7 @@ public class ObjectType {
             this.id = id == '!' ? getNextId() : id;
             this.category = category;
             this.maxNum = maxNum;
+            this.keyName = keyName;
             items.put(keyName, this);
         } else {
             ObjectType e = items.get(keyName);
@@ -65,6 +67,7 @@ public class ObjectType {
             this.id = e.id;
             this.category = e.category;
             this.maxNum = e.maxNum;
+            this.keyName = e.keyName;
         }
     }
 
@@ -103,6 +106,10 @@ public class ObjectType {
     public String toString() {
         //todo: possibly get description hooked up here.
         return category + "[" + textureRegion + " : " + id + "]";
+    }
+
+    public String getKeyName() {
+        return keyName;
     }
 
     public void setMaxNum(int maxNum) {

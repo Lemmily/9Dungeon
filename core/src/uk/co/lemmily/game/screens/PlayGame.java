@@ -52,7 +52,6 @@ public class PlayGame extends InputAdapter implements Screen {
         Gdx.gl.glClearColor(0,.5f,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
         batch.setProjectionMatrix(cam.combined);
         batch.setTransformMatrix(matrix);
         batch.begin();

@@ -32,7 +32,6 @@ public class Player extends Mob {
         }
     }
 
-
     public int getDamage() {
         return damage;
     }

@@ -3,6 +3,7 @@ package uk.co.lemmily.game.inventory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import uk.co.lemmily.game.entity.ObjectType;
+import uk.co.lemmily.game.inventory.Recipe.Byproduct;
 import uk.co.lemmily.game.inventory.Recipe.Recipe;
 import uk.co.lemmily.game.inventory.Recipe.ShapedRecipe;
 import uk.co.lemmily.game.utils.XMLResourceReader;
@@ -15,37 +16,47 @@ import java.util.HashMap;
 public class Crafting {
 
     public ItemSlot result;
+    public ItemSlot byproduct;
     private Array<ItemSlot> slots;
     private int numSlots;
     public int modulo;
 
-    private HashMap<String, ObjectType> itemTypes = new HashMap<String, ObjectType>();
+    private HashMap<String, ObjectType> itemTypes = new HashMap<>();
     private HashMap<String, Recipe> recipes = new HashMap<String, Recipe>();
+    HashMap<String, HashMap<String, Object>> allRecipes;
 
     public Crafting(int numSlots, int modulo) {
         this.numSlots = numSlots;
         this.modulo = modulo;
-        slots = new Array<ItemSlot>(numSlots);
+        slots = new Array<>(numSlots);
 
         for (int i = 0; i < numSlots; i++) {
             slots.add(new ItemSlot(null, 0));
         }
 
+        //slot for the result of a successful crafting.
         this.result = new ItemSlot(null, 0) {
             @Override
             public int getMaxAmount() {
-                return 1000; //special slot allows more to stack here.
+                return 1000; //special slot that allows more to stack here.
             }
         };
 
+        //slot for the byproduct of a successful crafting.
+        this.byproduct = new ItemSlot(null, 0) {
+            @Override
+            public int getMaxAmount() {
+                return 1000; //special slot that allows more to stack here.
+            }
+        };
 
         //store items under their keynames.
         for (ObjectType item : ObjectType.getItems().values()) itemTypes.put(item.getTextureRegion(), item);
         generateRecipes();
-    }
+		String key = ( String ) recipes.keySet().toArray()[0];
+	}
 
-
-    public String getCraftingSequence() {
+    public String getCurrentCraftingSequence() {
         String sequence = "";
 
         //do some magic
@@ -106,7 +117,6 @@ public class Crafting {
         if (colLength > 0) {
             int i;
             int j = 0;
-
             while (j < modulo) {
                 i = 1;
                 for (int k = 0; k < colLength; k++) {
@@ -122,7 +132,6 @@ public class Crafting {
                 }
                 j++;
             }
-
             newSequence = "" + rows[0].length() + "x" + colLength;
             for (String row : rows) {
                 newSequence += row;
@@ -135,9 +144,8 @@ public class Crafting {
         return slots;
     }
 
-    public ItemSlot getRecipe(String craftingSequence) {
+    public ItemSlot getRecipeResult( String craftingSequence) {
 
-        //todo: destruction of all items in crafting window
         if ( recipes.containsKey(craftingSequence) ) {
             return recipes.get(craftingSequence).getResult();
         }
@@ -145,25 +153,30 @@ public class Crafting {
     }
 
     public void generateRecipes() {
-        HashMap<String, HashMap<String, Object>> newRecipes = new XMLResourceReader().getResources(Gdx.files.internal("resources\\resources.xml"));
+        allRecipes = new XMLResourceReader().getResources(Gdx.files.internal("resources/resources.xml"));
 
-        for (String item : newRecipes.keySet()) {
-
-            HashMap<String, Object> structure = newRecipes.get(item);
+        for (String item : allRecipes.keySet()) {
+            HashMap<String, Object> structure = allRecipes.get(item);
             ObjectType.getItems().get(item).setMaxNum(Integer.parseInt(structure.get("maxNum").toString())); //add in the maxNum
             if (structure.get("category").equals("processed")) {
                 System.out.println(item + " started");
-
 //                Entity objectType = Entity.items.values().toArray(Entity[].class)[]
                 ItemSlot slot = new ItemSlot(itemTypes.get(structure.get("keyName")), (int)Float.parseFloat(structure.get("output").toString()));
-
-
-                String recipeString = convertToRecipeString(newRecipes.get(item).get("shape"));
+				//ItemSlot bypSlot = new ItemSlot(  );
+                String recipeString = convertToRecipeString(allRecipes.get(item).get("shape"));
                 recipes.put(recipeString, new ShapedRecipe(slot, recipeString));
                 System.out.println(item + " finished");
                 System.out.println();
             }
         }
+
+		for( String craftRecipe : recipes.keySet()) {
+			Byproduct byp = getByproduct( craftRecipe , true );
+			if (byp != null)
+				recipes.get(craftRecipe).setByproduct(byp);
+
+		}
+
     }
 
     private String convertToRecipeString(Object object) {
@@ -181,7 +194,6 @@ public class Crafting {
             keys.put(s, getItemFromKeyName(rawRecipe.get(s)));
         }
         String[] rows = shapeString.split(",");
-
 
         String recipeString = "" + rows[0].length() + "x" + rows.length;
         for (String row : rows) {
@@ -207,4 +219,30 @@ public class Crafting {
             slot.empty();
         }
     }
+
+    public void takeOneFromAll() {
+        for (Slot lSlot : slots) {
+            lSlot.take(1);
+        }
+    }
+
+	public Byproduct getByproduct( String keyName )
+	{
+		HashMap< String, Object > recipe = allRecipes.get( keyName );
+		if (recipe == null)
+			return null;
+
+		HashMap<String, Object> byprodRecipe = ( HashMap< String, Object > ) recipe.get("byproduct");
+
+		if (byprodRecipe == null)
+			return null;
+
+		return new Byproduct( Float.parseFloat( ( String ) byprodRecipe.get( "amount" ) ), Float.parseFloat( ( String ) byprodRecipe.get( "chance" ) ), ObjectType.getItems().get( byprodRecipe.get("type") ) );
+	}
+
+	public Byproduct getByproduct( String pCurrentCraftingSequence, boolean _ )
+	{
+		String keyName = recipes.get(pCurrentCraftingSequence).getResult().getObjectType().getKeyName();
+        return getByproduct( keyName );
+	}
 }

@@ -54,7 +54,6 @@ public class XMLResourceReader {
             //make entry to main hashmap.
             processed.put(resource.getAttribute("keyName"), curRes);
             processNodes(curRes, resource);
-
         }
         return processed;
     }

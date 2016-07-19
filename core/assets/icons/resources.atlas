@@ -79,6 +79,13 @@ nothing
   orig: 16, 16
   offset: 0, 0
   index: -1
+default
+  rotate: false
+  xy: 112, 0
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 silver
   rotate: false
   xy: 128, 0
@@ -87,6 +94,13 @@ silver
   offset: 0, 0
   index: -1
 steel
+  rotate: false
+  xy: 144, 0
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+stone
   rotate: false
   xy: 144, 0
   size: 16, 16

@@ -2,6 +2,7 @@ package uk.co.lemmily.game.inventory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -13,9 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 import uk.co.lemmily.game.LibgdxUtils;
 import uk.co.lemmily.game.entity.ObjectType;
 
-/**
- * Created by Emily on 23/10/2014.
- */
+
 public class SlotSource extends DragAndDrop.Source {
     private ItemSlot sourceSlot;
 
@@ -32,9 +31,14 @@ public class SlotSource extends DragAndDrop.Source {
 
         DragAndDrop.Payload payload = new Payload();
         ItemSlot payloadSlot;
-        if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-            payloadSlot = new ItemSlot(sourceSlot.getObjectType(), 1);
-            sourceSlot.take(1);
+        if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT))
+		{
+			payloadSlot = new ItemSlot( sourceSlot.getObjectType(), 1 );
+			sourceSlot.take( 1 );
+		} else if (Gdx.input.isKeyPressed( Input.Keys.CONTROL_LEFT )){
+
+			payloadSlot = new ItemSlot( sourceSlot.getObjectType(), sourceSlot.getAmount() / 2 );
+			sourceSlot.take( sourceSlot.getAmount() / 2 );
         } else {
 
             payloadSlot = new ItemSlot(sourceSlot.getObjectType(), sourceSlot.getAmount());
@@ -64,18 +68,25 @@ public class SlotSource extends DragAndDrop.Source {
             ItemSlot targetSlot =((ItemSlotActor) target.getActor()).getSlot();
             //if objectType is the same, stack it.
             if (targetSlot.getObjectType() == payloadSlot.getObjectType() || targetSlot.getObjectType() == null) {
-                targetSlot.add(payloadSlot.getObjectType(), payloadSlot.getAmount());
+                int numCantMove = targetSlot.add( payloadSlot.getObjectType(), payloadSlot.getAmount() );
+
+				if (numCantMove > 0)
+                	sourceSlot.add( payloadSlot.getObjectType(), numCantMove );
+
             } else {
                 //objectType in slot is not the same, so switch items.
                 ObjectType targetType = targetSlot.getObjectType();
                 int targetAmount = targetSlot.getAmount();
                 targetSlot.take(targetAmount);
                 targetSlot.add(payloadSlot.getObjectType(), payloadSlot.getAmount());
-                sourceSlot.add(targetType, targetAmount);
+				if (targetType != null)
+                	sourceSlot.add(targetType, targetAmount);
             }
         } else {
             //invalid drop location, put it back to whence it came!
             sourceSlot.add(payloadSlot.getObjectType(), payloadSlot.getAmount());
         }
     }
+
+
 }
