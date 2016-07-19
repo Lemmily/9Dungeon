@@ -13,7 +13,7 @@ public class Inventory {
 
 
     public Inventory() {
-        slots = new Array<ItemSlot>(25);
+        slots = new Array<>(25);
 
         //create the empty slots
         for (int i = 0; i < 25; i++) {
@@ -23,7 +23,10 @@ public class Inventory {
         ObjectType en = new ObjectType();
         //create some random items
         for (ItemSlot slot : slots) {
-            ObjectType e = (ObjectType) ObjectType.getItems().values().toArray()[MathUtils.random(0, ObjectType.getItems().values().size() - 1)];
+            ObjectType e = (ObjectType) ObjectType.getItems().values().toArray()[MathUtils.random(10, ObjectType.getItems().values().size() - 1)];
+            if( ! e.getCategory().equals("resource")){
+                continue;
+            }
             slot.add(e, MathUtils.random(1, e.getMaxNum()));
             if (slot.getObjectType() == ObjectType.NOTHING) {
                 slot.clear();
@@ -72,7 +75,7 @@ public class Inventory {
     }
 
     public void sort() {
-
+        //TODO: sort items into stacks of their own type.
     }
 
 

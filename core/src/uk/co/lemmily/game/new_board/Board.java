@@ -20,7 +20,6 @@ public class Board {
                 slots.get(i).add(new BoardSlot(new Mob(ObjectType.GOBLIN), 1));
             }
 
-
         }
 
         slots.get(1).get(1).put(new Player());

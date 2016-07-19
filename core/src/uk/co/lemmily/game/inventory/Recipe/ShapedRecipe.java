@@ -11,6 +11,7 @@ import java.util.Map;
  * Created by Emily on 26/10/2014.
  */
 public class ShapedRecipe implements Recipe {
+    private Byproduct byproduct;
     private Map<Character, Integer> ingredients = new HashMap<Character, Integer>() {
     };
     private ItemSlot output;
@@ -20,7 +21,13 @@ public class ShapedRecipe implements Recipe {
     public ShapedRecipe(ObjectType item, int num, String recipe) {
         this(new ItemSlot(item, num), recipe);
     }
-    
+
+    public ShapedRecipe(ItemSlot output, Byproduct byproducts, String recipe)
+    {
+        this.output = output;
+        byproduct = byproducts;
+        recipeString = recipe;
+    }
     public ShapedRecipe(ItemSlot slot, String recipe) {
         output = slot;
         recipeString = recipe;
@@ -55,7 +62,19 @@ public class ShapedRecipe implements Recipe {
     }
 
     @Override
+    public void setByproduct( Byproduct pByp )
+    {
+        this.byproduct = pByp;
+    }
+
+    @Override
     public ItemSlot getResult() {
         return output.copy();
+    }
+
+    @Override
+    public Byproduct getByproduct()
+    {
+        return byproduct;
     }
 }

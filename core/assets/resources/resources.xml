@@ -56,7 +56,7 @@
         <maxNum>200</maxNum>
         <shape C="copper">CC</shape>
         <need type="copper" amount="2"/>
-        <output>2.0</output>
+        <output>3.0</output>
         <time>0.5</time>
     </processed>
     <processed keyName="circuitboard" name="circuit board">

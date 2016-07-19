@@ -10,6 +10,7 @@ public abstract class Slot {
 
     protected ObjectType objectType;
     protected int amount;
+    protected int units = 1;
     protected Array<SlotListener> slotListeners = new Array<SlotListener>();
 
 
@@ -19,7 +20,7 @@ public abstract class Slot {
 
 
     public int getAmount() {
-        return amount;
+        return amount / units;
     }
 
     public int getMaxAmount() {
@@ -68,12 +69,9 @@ public abstract class Slot {
 
     public abstract Slot clear();
 
-
     public boolean isEmpty() {
         return objectType == null || amount <= 0;
     }
-
-
 
     public void addListener(SlotListener slotListener) {
         slotListeners.add(slotListener);

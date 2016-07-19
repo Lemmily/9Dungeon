@@ -50,7 +50,7 @@ public class ItemSlotActor extends ImageTextButton implements SlotListener {
 
         ImageTextButtonStyle style = new ImageTextButtonStyle(skin.get(ImageTextButtonStyle.class));
         if (image == null) {
-            System.out.println("FUUU");
+            System.out.println("FUUU - ItemSlotActor->createStyle -> can't find the image!" + slot.toString());
             image = icons.findRegion("nothing");
         }
         style.imageUp = new TextureRegionDrawable(image);
@@ -85,14 +85,13 @@ public class ItemSlotActor extends ImageTextButton implements SlotListener {
 //        pack();
     }
 
-
     public void shake() {
         int x = (int)getX();
         Timeline.createSequence().beginSequence()
 //                .push(Tween.set(this, ActorAccessor.X).target(0))
-                .push(Tween.from(this, ActorAccessor.X, 0.2f).target(x))
+                .push(Tween.from(this, ActorAccessor.X, 0.1f).target(x))
                 .push(Tween.to(this, ActorAccessor.X, 0.1f).target(x - 3))
-                .push(Tween.to(this, ActorAccessor.X, 0.2f).target(x + 3))
+                .push(Tween.to(this, ActorAccessor.X, 0.1f).target(x + 3))
                 .push(Tween.to(this, ActorAccessor.X, 0.1f).target(x))
                 .end().start(LibgdxUtils.tweenManager);
     }

@@ -12,6 +12,11 @@ public class ItemSlot extends Slot {
         this.amount =  amount;
     }
 
+    public ItemSlot(ObjectType item, int amount, int unit) {
+        this.objectType = item;
+        this.amount =  amount;
+        this.units = unit;
+    }
     public ItemSlot() {
         this(null, 0);
     }

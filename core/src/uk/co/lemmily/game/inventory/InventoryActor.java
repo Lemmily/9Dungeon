@@ -27,7 +27,7 @@ public class InventoryActor extends Window {
             dragAndDrop.addSource(new SlotSource(slotActor));
             dragAndDrop.addTarget(new SlotTarget(slotActor));
 
-            //add the slot to the inventoy
+            //add the slot to the inventory
             add(slotActor);
 
             i++;

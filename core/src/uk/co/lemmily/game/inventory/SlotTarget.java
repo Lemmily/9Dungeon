@@ -22,7 +22,6 @@ public class SlotTarget extends DragAndDrop.Target {
         ItemSlot payloadSlot = (ItemSlot) payload.getObject();
 
         //highlight the slot a bit.
-        getActor().setColor(Color.WHITE);
 
         //this return means it's a valid target
         return true;
@@ -42,6 +41,5 @@ public class SlotTarget extends DragAndDrop.Target {
     }
 
     public void reset(Source source, Payload payload, float x, float y, int pointer) {
-        getActor().setColor(Color.LIGHT_GRAY);
     }
 }

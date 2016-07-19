@@ -23,6 +23,7 @@ allprojects {
     }
 
     repositories {
+        mavenLocal();
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
@@ -51,6 +52,8 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "com.badlogicgames.ashley:ashley:$ashleyVersion"
         compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
+//        compile "aurelienribon:tweenengine:6.3.3"
+//        compile "aurelienribon:tweenengine:6.3.3:sources"
         compile fileTree(dir: '../libs', include: '*.jar')
     }
 }

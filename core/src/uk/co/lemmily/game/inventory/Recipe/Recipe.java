@@ -9,4 +9,10 @@ public interface Recipe {
 
 
     public ItemSlot getResult();
+
+    public Byproduct getByproduct();
+
+    public String getRecipeString();
+
+    public void setByproduct( Byproduct pByp );
 }

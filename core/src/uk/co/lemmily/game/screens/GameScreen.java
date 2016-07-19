@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import uk.co.lemmily.game.entity.Player;
@@ -47,6 +48,9 @@ public class GameScreen implements Screen {
         craftingActor = new CraftingActor(crafting, inventory, dragAndDrop, skin);
         boardActor = new BoardActor(board, player, dragAndDrop, skin);
 
+        boardActor.setPosition(stage.getWidth()/2, stage.getHeight()/2);
+        boardActor.setPosition(stage.getWidth()/2, stage.getHeight()/2, Align.top);
+
         stage.addActor(inventoryActor);
         stage.addActor(craftingActor);
         stage.addActor(boardActor);
@@ -73,7 +77,6 @@ public class GameScreen implements Screen {
         stage.getViewport().update(width, height, true);
         boardActor.resize(width,height);
     }
-
 
     @Override
     public void hide() {
