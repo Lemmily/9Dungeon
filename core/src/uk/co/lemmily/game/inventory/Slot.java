@@ -43,17 +43,24 @@ public abstract class Slot {
     public int add(ObjectType item, int amount) {
 
         int num = -1;
-        if ((this.objectType == item || this.objectType == null)) {
+		if (item == null)
+			return -1;
+        if (this.objectType == item || this.objectType == null) {
             this.objectType = item;
             if (getAmount() + amount < getMaxAmount())
+            {
                 this.amount += amount;
-            else {
+                num = 0;
+            } else {
                 num = this.amount + amount;
                 this.amount = getMaxAmount();
-                num = num % getMaxAmount();
+				if( getMaxAmount() == 0 )
+				{
+					System.out.println("WHY AMI ZERO");
+				}
+				num = num % getMaxAmount();
             }
             notifyListeners();
-            num = 0;
         }
 
         // num values: -1 UNSUCCESSFUL, 0 COMPLETE SUCCESS, 0 < SUCCESS WITH LEFTOVERS

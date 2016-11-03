@@ -34,12 +34,11 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Logger;
 import uk.co.lemmily.game.splash.SplashScreen;
 import uk.co.lemmily.game.tween.ActorAccessor;
-import uk.co.lemmily.game.ui.UIMananager;
+import uk.co.lemmily.game.ui.UIManager;
 
 /**
  * This is the main class of the game itself. It offers access to the
@@ -80,7 +79,7 @@ public class LibgdxUtils implements ApplicationListener {
     public static ModelBatch modelBatch;
 
     public static TweenManager tweenManager;
-    private UIMananager uiManager;
+    private UIManager uiManager;
 
     @Override
     public void create() {
@@ -158,7 +157,7 @@ public class LibgdxUtils implements ApplicationListener {
         }
     }
 
-    public UIMananager getUIelement() {
+    public UIManager getUIelement() {
         return uiManager;
     }
 }

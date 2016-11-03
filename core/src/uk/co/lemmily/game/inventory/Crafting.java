@@ -193,6 +193,8 @@ public class Crafting {
         for (String s : rawRecipe.keySet()) {
             keys.put(s, getItemFromKeyName(rawRecipe.get(s)));
         }
+        if (shapeString == null)
+            return "EROOOOORRR";
         String[] rows = shapeString.split(",");
 
         String recipeString = "" + rows[0].length() + "x" + rows.length;

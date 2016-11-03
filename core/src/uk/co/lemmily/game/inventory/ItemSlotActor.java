@@ -41,7 +41,7 @@ public class ItemSlotActor extends ImageTextButton implements SlotListener {
     private static ImageTextButtonStyle createStyle(Skin skin, Slot slot) {
         TextureAtlas icons = LibgdxUtils.assets.get("icons/resources.atlas", TextureAtlas.class);
         TextureRegion image;
-        if (slot.getObjectType() != null) {
+        if (slot.getObjectType() != null || slot.getAmount() != 0) {
             image = icons.findRegion(slot.getObjectType().getTextureRegion());
         } else {
             //special empty

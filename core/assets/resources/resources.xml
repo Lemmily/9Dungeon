@@ -39,7 +39,7 @@
         <need type="coal" amount="1"/>
         <output>1.0</output>
         <time>1.0</time>
-        <byproduct type="slag" amount="0.1" chance="0.1"/>
+        <byproduct type="slag" amount="4.5" chance="0.1"/>
     </processed>
     <processed keyName="copper" name="copper plate">
         <location>furnace</location>

@@ -75,14 +75,19 @@ public class CraftingActor extends Window{
                             if( byproducts.containsKey( lByp.getObjectType() ) )
                             {
                                 byproducts.replace( lByp.getObjectType(), byproducts.get( lByp.getObjectType() ) + lByp.getAmount() );
-                                if( byproducts.get( lByp.getObjectType() ) >= 1 && crafting.byproduct.add( lByp.getObjectType(), 1 ) >= 0 )
+
+                                //if there's equal to or more than 1 annd
+                                if( byproducts.get( lByp.getObjectType() ) >= 1)
                                 {
-                                    byproducts.replace( lByp.getObjectType(), byproducts.get( lByp.getObjectType() ) - 1 );
-                                }
-                                else
-                                {
-                                    byproductSlotActor.shake();
-                                    //can't place the byproduct cause it's full.
+									if ( crafting.byproduct.add( lByp.getObjectType(), ( int ) (byproducts.get( lByp.getObjectType() ) / 1) ) >= 0 )
+									{
+										float amount = (float)(byproducts.get( lByp.getObjectType() ) - byproducts.get( lByp.getObjectType() ) / 1);
+										float other_amount = byproducts.get( lByp.getObjectType() ) % 1;
+										byproducts.replace( lByp.getObjectType(), amount);
+									}
+                                	else
+                                    	byproductSlotActor.shake();
+                                    	//can't place the byproduct cause it's full/occupied by different type.
                                 }
                             }
                             else

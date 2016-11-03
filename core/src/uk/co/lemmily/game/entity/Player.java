@@ -21,6 +21,8 @@ public class Player extends Mob {
         System.out.println("player interacted with " + entity);
         if (entity instanceof Mob && ! (entity instanceof Player)) {
             hurt((Mob)entity);
+        } else if (entity instanceof ItemDrop) {
+            //TODO: automatic pick up? UI updates?
         }
     }
 
